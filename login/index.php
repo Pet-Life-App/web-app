@@ -45,12 +45,12 @@
 
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small text-teal" href="auth-password-basic.html">Forgot Password?</a>
-                                            <a class="btn btn-teal" href="dashboard-1.html">Login</a>
+                                            <a class="btn btn-teal" href="/">Login</a>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <div class="small"><a class="text-teal" href="/login/register.php">Need an account? Sign up!</a></div>
+                                    <div class="small"><a class="text-teal" href="/register">Need an account? Sign up!</a></div>
                                 </div>
                             </div>
                         </div>

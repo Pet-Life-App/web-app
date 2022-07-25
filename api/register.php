@@ -24,8 +24,8 @@ if ($isPost) {
     if (!count($errors)) {
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-        $insert = $db->prepare("INSERT INTO users () VALUES ()");
-        $insert->bind_param("",);
+        $insert = $db->prepare("INSERT INTO users (first_name, last_name, email, mobile_number, city, password) VALUES (?, ?, ?, ?, ?, ?)");
+        $insert->bind_param("ssssss", $_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['mobile_number'], $_POST['city'], $password);
         $insert->execute();
 
         $res['success'] = true;

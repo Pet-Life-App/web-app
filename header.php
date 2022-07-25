@@ -8,7 +8,7 @@
         <!-- * * Tip * * You can use text or an image for your navbar brand.-->
         <!-- * * * * * * When using an image, we recommend the SVG format.-->
         <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.php">Pet Life</a>
+        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="/index">Pet Life</a>
         <!-- Navbar Items-->
         <ul class="navbar-nav align-items-center ms-auto">
 
@@ -75,15 +75,15 @@
                         <img class="dropdown-user-img" src="assets/img/illustrations/profiles/profile-1.png" />
                         <div class="dropdown-user-details">
                             <div class="dropdown-user-details-name">Valerie Luna</div>
-                            <div class="dropdown-user-details-email">Your nan is so HOT!</div>
+                            <div class="dropdown-user-details-email">Discription</div>
                         </div>
                     </h6>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#!">
+                    <a class="dropdown-item" href="/settings">
                         <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                         Account
                     </a>
-                    <a class="dropdown-item" href="#!">
+                    <a class="dropdown-item" onclick="logOut()">
                         <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                         Logout
                     </a>
