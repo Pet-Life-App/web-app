@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login!</title>
-    <link rel="stylesheet" href="/assets/css/background.css?<?php echo filemtime(__DIR__."/../assets/css/background.css") ?>">
+    <link rel="stylesheet" href="/assets/css/background.css?<?php echo filemtime(__DIR__ . "/../assets/css/background.css") ?>">
     <link rel="stylesheet" href="/assets/css/theme.css">
 </head>
 
@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="card-body">
 
-                                    <form>
+                                    <form id="login-form">
 
                                         <div class="mb-3">
                                             <label class="small mb-1" for="inputEmailAddress">Email</label>
@@ -45,7 +45,7 @@
 
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                             <a class="small text-teal" href="auth-password-basic.html">Forgot Password?</a>
-                                            <a class="btn btn-teal" href="/">Login</a>
+                                            <a class="btn btn-teal" href="/app">Login</a>
                                         </div>
                                     </form>
                                 </div>
@@ -77,20 +77,47 @@
     <script src="js/scripts.js"></script>
 
     <div>
-            <ul class="circles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-            </ul>
-    </div >
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
 
+    <script>
+        $(() => {
+            $("#login-form").on("submit", function(e) {
+                e.preventDefault();
+
+                let email_address = $("#inputEmailAddress").val()
+                let password = $("#inputPassword").val()
+
+                function validateEmail(email) {
+                    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(String(email).toLowerCase());
+                }
+
+
+                if (validateEmail(email_address)) {
+
+                }
+
+                $.post("/api/login.php", {
+                    email_address: $("#inputEmailAddress").val(),
+                    password: $("#inputPassword").val()
+                }, (data) => {
+
+                })
+            })
+        })
+    </script>
 </body>
 
 </html>
