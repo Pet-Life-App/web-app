@@ -25,4 +25,8 @@ async function setContent(ctx) {
   $.get("/pages/router.php?" + query, (content) => {
     $(contentSelector).html(content);
   });
+
+  //Update nav to show the path where we are going bold and green
+  $(".sidenav-menu .nav-link").removeClass("active");
+  $(`.sidenav-menu .nav-link[href='${path}']`).addClass("active");
 }
