@@ -23,9 +23,9 @@
 <div class="container-xl px-4 mt-4">
     <div class="settings">
         <nav class="nav nav-borders">
-            <a class="nav-link ms-0" href="/settings">Profile</a>
-            <a class="nav-link active" href="/billing">Billing</a>
-            <a class="nav-link" href="/password">Password & Security</a>
+            <a class="nav-link ms-0" href="/app/usersettings">Profile</a>
+            <a class="nav-link active" href="/app/billing">Billing</a>
+            <a class="nav-link" href="/app/password">Password & Security</a>
         </nav>
         <hr class="mt-0 mb-4">
     </div>

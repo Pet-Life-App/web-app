@@ -26,9 +26,9 @@
 <div class="container-xl px-4 mt-4">
     <div class="settings">
         <nav class="nav nav-borders">
-            <a class="nav-link active ms-0" href="/settings">Profile</a>
-            <a class="nav-link" href="/billing">Billing</a>
-            <a class="nav-link" href="/password">Password & Security</a>
+            <a class="nav-link active ms-0" href="/app/usersettings">Profile</a>
+            <a class="nav-link" href="/app/billing">Billing</a>
+            <a class="nav-link" href="/app/password">Password & Security</a>
         </nav>
         <hr class="mt-0 mb-4">
     </div>
@@ -39,11 +39,25 @@
                 <div class="card-header bg-teal text-white">Profile Picture</div>
                 <div class="card-body text-center">
 
-                    <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
+                    <img class="img-account-profile rounded-circle mb-2" href="/img/aims.png" alt="">
 
                     <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
 
                     <button class="btn btn-teal" type="button">Upload new image</button>
+                </div>
+            </div>
+            <br>
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header bg-teal text-white">Email Notifications</div>
+                <div class="card-body text-center">
+
+                    <div class="small font-italic text-muted mb-4">Would you like reminders sent to your email?</div>
+                    <input class="form-check-input" id="enableNotifications" type="checkbox" value="">
+                    <label class="form-check-label" for="enableNotifications">Enable Notifications?</label>
+                    <br>
+                    <a class="btn btn-teal">Enable</a>
+                    <a class="btn btn-outline-danger">Disable</a>
+
                 </div>
             </div>
         </div>
