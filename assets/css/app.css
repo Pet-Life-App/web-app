@@ -1,0 +1,46 @@
+.topnav {
+    position: fixed;
+    width: 100%;
+    height:50px
+}
+
+main {
+    padding: 65px 10px 10px 10px;
+    position: relative;
+    width: 100%;
+}
+
+.sidenav.active ~ main {
+    margin-left: 210px;
+}
+
+.sidenav.active {
+    width: 200px;
+}
+
+.sidenav {
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    width: 0px;
+    height: calc(100vh - 50px);
+    transition: .3s;
+    margin-top: 50px;
+}
+
+.sidenav .sidenav-menu {
+    overflow: auto;
+}
+
+.bg-gradient-green {
+    background: rgb(60, 141, 102);
+    background: linear-gradient(90deg, rgba(60, 141, 102) 0%, rgb(66, 196, 131) 45%, rgb(63, 202, 144) 100%);
+}
+
+.settings .nav-link.active {
+    color: teal;
+}
+.sidenav .nav-link:hover {
+    color: teal !important;
+  }
+
