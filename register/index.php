@@ -8,6 +8,7 @@
     <title>Register For Pet Life!</title>
     <link rel="stylesheet" href="/assets/css/background.css?<?php echo filemtime(__DIR__ . "/../assets/css/background.css") ?>">
     <link rel="stylesheet" href="/assets/css/theme.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 </head>
 
 <body class="bg-teal" data-new-gr-c-s-check-loaded="8.899.0" data-gr-ext-installed="">
@@ -59,8 +60,8 @@
                                             <div class="col-md-6">
 
                                                 <div class="mb-3">
-                                                    <label class="small mb-1" for="inputCity">City</label>
-                                                    <input class="form-control" id="inputCity" type="City" placeholder="Enter Your City">
+                                                    <label class="small mb-1" for="inputCity">Town</label>
+                                                    <input class="form-control" id="inputCity" type="text" placeholder="Enter Your Town">
                                                 </div>
                                             </div>
                                         </div>
@@ -134,6 +135,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script>
+        let cities = [];
+
         // https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
         const checkEmail = (email) => {
             return String(email)
@@ -142,7 +145,7 @@
                     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 );
         };
-         // Has to have at least one number and one uppercase and lowercase letter and 6 characters long
+        // Has to have at least one number and one uppercase and lowercase letter and 6 characters long
         const checkPassword = (password) => {
             return String(password)
                 .match(
@@ -151,6 +154,20 @@
         }
 
         $(() => {
+            $.getJSON("/assets/nz-cities.json", function(citiesList) {
+                //filter out only city name
+
+                citiesList.forEach(function(city) {
+                    cities.push(city.city);
+                })
+
+                console.log(cities);
+            });
+
+            $("#inputCity").autocomplete({
+                source: cities
+            });
+
             $("#register-form").on("submit", function(e) {
                 e.preventDefault();
                 $("#register-form input").removeClass("is-invalid")
@@ -163,82 +180,67 @@
                 let password = $("#inputPassword").val()
                 let confirm_password = $("#inputConfirmPassword").val()
 
-                if (!checkEmail(email_address)) {  
-                $("#register-form #inputEmailAddress").addClass("is-invalid")
-                }
-
-                if ($("#register-form #inputEmailAddress").hasClass("is-invalid")){
-                     $("[for='inputEmailAddress']").html("Email - Does not meet rquired format")
-
-                }
-                else {
+                if (checkEmail(email_address)) {
                     $("[for='inputEmailAddress']").html("Email")
 
+                } else {
+                    $("#register-form #inputEmailAddress").addClass("is-invalid")
+                    $("[for='inputEmailAddress']").html("Email - Does not meet rquired format")
                 }
 
-                if (!checkPassword(password)) {  
-                $("#register-form #inputPassword").addClass("is-invalid")
-                }
-
-                if ($("#register-form #inputPassword").hasClass("is-invalid")){
-                     $("[for='inputPassword']").html("Password - Password must be 6 or more characters long and contain one number and one uppercase and lowercase letter")
-
-                }
-                else {
+                if (checkPassword(password)) {
                     $("[for='inputPassword']").html("Password")
-
+                } else {
+                    $("[for='inputPassword']").html("Password - Password must be 6 or more characters long and contain one number and one uppercase and lowercase letter")
+                    $("#register-form #inputPassword").addClass("is-invalid")
                 }
 
-                if (password !== confirm_password) {
-                    $("#register-form #inputConfirmPassword").addClass("is-invalid")
-                }
-
-                if ($("#register-form #inputConfirmPassword").hasClass("is-invalid")){
-                     $("[for='inputConfirmPassword']").html("Confirm Password - Passwords do not match")
-
-                }
-                else {
+                if (password == confirm_password) {
                     $("[for='inputConfirmPassword']").html("Confirm Password")
-
+                } else {
+                    $("#register-form #inputConfirmPassword").addClass("is-invalid")
+                    $("[for='inputConfirmPassword']").html("Confirm Password - Passwords do not match")
                 }
 
-                if (mobile_number.length > 0 < 15 ) {
-                    $("#register-form #inputMobile").addClass("is-invalid")
+                if (mobile_number.length > 0 && mobile_number.length < 15) {
+                    $("[for='inputMobile']").html("Mobile Number");
+                } else {
+                    $("#register-form #inputMobile").addClass("is-invalid");
+                    $("[for='inputMobile']").html("Mobile Number - Is not valid");
                 }
 
-                if ($("#register-form #inputMobile").hasClass("is-invalid")){
-                     $("[for='inputMobile']").html("Mobile Number - Is not valid")
-
-                }
-                else {
-                    $("[for='inputMobile']").html("Mobile Number")
-
-                }
-
-                if (first_name.length > 0 < 36 ) {
-                    $("#register-form #inputFirstName").addClass("is-invalid")
-                }
-
-                if ($("#register-form #inputFirstName").hasClass("is-invalid")){
-                     $("[for='inputFirstName']").html("First Name - Is not valid")
-
-                }
-                else {
+                if (first_name.length > 0 && first_name.length < 36) {
                     $("[for='inputMobile']").html("First Name")
-
+                } else {
+                    $("#register-form #inputFirstName").addClass("is-invalid")
+                    $("[for='inputFirstName']").html("First Name - Is not valid")
                 }
 
-                if (last_name.length > 0 < 36 ) {
-                    $("#register-form #inputLastName").addClass("is-invalid")
-                }
-
-                if ($("#register-form #inputLastName").hasClass("is-invalid")){
-                     $("[for='inputLastName']").html("Last Name - Is not valid")
-
-                }
-                else {
+                if (last_name.length > 0 && last_name.length < 36) {
                     $("[for='inputlastName']").html("Last Name")
+                } else {
+                    $("#register-form #inputLastName").addClass("is-invalid")
+                    $("[for='inputLastName']").html("Last Name - Is not valid")
+                }
 
+                if (!$("input").hasClass("is-invalid")) {
+                    $.post("/api/register.php", {
+                        first_name,
+                        last_name,
+                        email_address,
+                        mobile_number,
+                        city,
+                        password,
+                        confirm_password
+                    }, (data) => {
+                        if (data.success) {
+                            window.location = "/app";
+                        } else {
+                            data.errors.forEach((error) => {
+                                alert(error.text);
+                            })
+                        }
+                    })
                 }
             })
         })
